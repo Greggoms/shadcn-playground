@@ -14,8 +14,36 @@ const FormPage = () => {
 
       <div className="space-y-4 leading-7">
         <p>
-          Need to make the searchbar options hover over this content instead of
-          shifting it around.
+          You can search through any object value that is returned from a{" "}
+          <a href="https://jsonplaceholder.typicode.com/users" className="link">
+            JSON Placeholder users
+          </a>{" "}
+          fetch request. This is achieved by using a simple{" "}
+          <a
+            href="https://github.com/Greggoms/shadcn-playground/blob/main/src/lib/utils/flatten-object.ts"
+            className="link"
+          >
+            <code>flatten-object</code>
+          </a>{" "}
+          utility I found a while ago. The performance probably isn&apos;t the
+          best for large data sets, but it works for this.
+        </p>
+        <p>
+          The data is being fetched using{" "}
+          <a
+            href="https://tanstack.com/query/latest/docs/framework/react/overview"
+            className="link"
+          >
+            Tanstack&apos;s React Query
+          </a>
+          , my first time using it with{" "}
+          <a
+            href="https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating"
+            className="link"
+          >
+            NextJS
+          </a>
+          .
         </p>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto nostrum

@@ -1,6 +1,6 @@
 "use client";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+
+import { useQuery } from "@tanstack/react-query";
 import { useRef, useState } from "react";
 import * as Portal from "@radix-ui/react-portal";
 
@@ -13,11 +13,10 @@ import {
 } from "@/components/ui/command";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-import {
-  SearchbarResults,
-  searchbarOptions,
-} from "@/lib/data/searchbar-results";
 import flattenObject from "@/lib/utils/flatten-object";
+import getUsers from "@/data/getUsers";
+import { User } from "@/types/User";
+import { toast } from "sonner";
 
 /**
  * The CommandItems should have an update coming out soon that
@@ -37,14 +36,41 @@ import flattenObject from "@/lib/utils/flatten-object";
  *
  */
 const Searchbar = () => {
-  const router = useRouter();
-  const [filtered, setFiltered] = useState<SearchbarResults>([]);
-  const containerElement = useRef(null);
+  const [filtered, setFiltered] = useState<User[]>([]);
+  const [searchText, setSearchText] = useState<string>("");
+  const containerElement = useRef<HTMLDivElement>(null);
+
+  const {
+    data: users,
+    isPending,
+    error,
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: getUsers,
+  });
+
+  if (isPending)
+    return (
+      <Command shouldFilter={false} className="relative overflow-visible mb-5">
+        <CommandInput placeholder="Fetching Employees..." disabled />
+      </Command>
+    );
+
+  if (error)
+    return (
+      <Command shouldFilter={false} className="relative overflow-visible mb-5">
+        <CommandInput
+          placeholder={`An error occurred: ${error.message}`}
+          disabled
+        />
+      </Command>
+    );
 
   const handleFilterSearch = (searchInput: string) => {
+    setSearchText(searchInput);
     if (!searchInput) return setFiltered([]);
 
-    const filteredResults = searchbarOptions.filter((option) => {
+    const filteredResults = users.filter((option) => {
       const flatObj = flattenObject(option);
       return Object.values(flatObj).some((val) =>
         String(val).toLowerCase().includes(searchInput.toLowerCase())
@@ -57,8 +83,9 @@ const Searchbar = () => {
     <Command shouldFilter={false} className="relative overflow-visible mb-5">
       <CommandInput
         inputMode="search"
-        placeholder="Search employees by name, location, or ID"
+        placeholder="Search employees by various keywords..."
         onValueChange={(val) => handleFilterSearch(val)}
+        value={searchText}
       />
       {/* 
         Container Element - Allows CommandItems to hover over body: 
@@ -87,20 +114,28 @@ const Searchbar = () => {
                 </span>
               }
             >
-              {filtered.map((item) => {
+              {filtered.map((person) => {
                 return (
                   <CommandItem
-                    key={item.id}
+                    key={person.id}
                     onSelect={() => {
-                      console.log(`Selected ${item.name}`);
-                      router.push(`/?selected=${item.name}`);
+                      toast.info(`Selected ${person.name}`);
+                      setFiltered([]);
+                      setSearchText("");
                     }}
                     className="data-[selected=true]:bg-green-600 p-0"
                   >
-                    <Link href={"/"} className="bg-red-800/40 w-full p-2">
-                      <p className="text-ld">{item.name}</p>
-                      <p className="text-muted-foreground">{item.location}</p>
-                    </Link>
+                    {/* <Link href={"/"} className="bg-accent/40 w-full p-2"> */}
+                    <button
+                      type="button"
+                      className="text-left bg-accent/40 w-full p-2 hover:bg-none"
+                    >
+                      <p className="text-ld">{person.name}</p>
+                      <p className="text-muted-foreground">
+                        {person.company.name}
+                      </p>
+                    </button>
+                    {/* </Link> */}
                   </CommandItem>
                 );
               })}

@@ -6,7 +6,7 @@ import UserButton from "@/components/UserButton";
 
 const Header = () => {
   return (
-    <header className="border-b-[1px] border-b-zinc-200 dark:border-b-zinc-800 shadow-sm">
+    <header className="border-b-[1px] border-b-border shadow-sm sticky top-0 bg-background/70 backdrop-blur-lg z-20">
       <div className="flex items-center justify-between p-3">
         <div className="flex items-baseline gap-x-5">
           <h2 className="font-thin text-xl">

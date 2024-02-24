@@ -25,7 +25,7 @@ import { toast } from "sonner";
 import genericFormSchema, {
   GenericFormValues,
 } from "./schemas/generic-form-schema";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/shadcn-utils";
 import { format } from "date-fns";
 import { CalendarIcon } from "@radix-ui/react-icons";
 
