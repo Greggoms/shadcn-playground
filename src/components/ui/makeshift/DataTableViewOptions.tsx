@@ -1,6 +1,5 @@
 "use client";
 
-import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { MixerHorizontalIcon } from "@radix-ui/react-icons";
 import { Table } from "@tanstack/react-table";
 
@@ -11,6 +10,7 @@ import {
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 interface DataTableViewOptionsProps<TData> {
@@ -23,12 +23,7 @@ export default function DataTableViewOptions<TData>({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          size="sm"
-          //   className="ml-auto hidden h-8 lg:flex"
-          className="ml-auto h-8 flex"
-        >
+        <Button variant="outline" size="sm" className="ml-auto h-8 flex">
           <MixerHorizontalIcon className="mr-2 h-4 w-4" />
           Columns
         </Button>
@@ -49,6 +44,7 @@ export default function DataTableViewOptions<TData>({
                 className="capitalize"
                 checked={column.getIsVisible()}
                 onCheckedChange={(value) => column.toggleVisibility(!!value)}
+                onSelect={(e) => e.preventDefault()}
               >
                 {column.id}
               </DropdownMenuCheckboxItem>
