@@ -14,6 +14,13 @@ const Nav = () => {
     <NavigationMenu id="main-nav">
       <NavigationMenuList>
         <NavigationMenuItem>
+          <Link href="/carousel" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Carousel
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
           <Link href="/form" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               Form

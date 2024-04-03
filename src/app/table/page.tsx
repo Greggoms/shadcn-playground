@@ -12,7 +12,7 @@ const TablePage = async () => {
   );
 
   return (
-    <section className="container mt-5 mb-10">
+    <main className="container mt-5 mb-10">
       <UserTable columns={columns} data={doubled} />
 
       <div className=" mt-10 space-y-4">
@@ -51,7 +51,7 @@ const TablePage = async () => {
           has no functionality.
         </p>
       </div>
-    </section>
+    </main>
   );
 };
 

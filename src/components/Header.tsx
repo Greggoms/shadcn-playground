@@ -10,7 +10,10 @@ const Header = () => {
       <div className="flex items-center justify-between p-3">
         <div className="flex items-baseline gap-x-5">
           <h2 className="font-thin text-xl">
-            <Link href="/">shadcn-playground</Link>
+            <Link href="/">
+              <span className="block md:hidden">sp</span>
+              <span className="hidden md:block">shadcn-playground</span>
+            </Link>
           </h2>
           <Nav />
         </div>

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const FormPage = () => {
   return (
-    <section className="container mt-5 mb-10">
+    <main className="container mt-5 mb-10">
       <Searchbar />
 
       <div className="space-y-4 leading-7">
@@ -103,7 +103,7 @@ const FormPage = () => {
           delectus nihil. Quibusdam repudiandae reiciendis labore perferendis.
         </p>
       </div>
-    </section>
+    </main>
   );
 };
 

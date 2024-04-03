@@ -9,13 +9,13 @@ export const metadata: Metadata = {
 
 const FormPage = () => {
   return (
-    <section className="container mt-5 mb-10">
+    <main className="container mt-5 mb-10">
       <h2 className="text-2xl font-medium mb-5">
         Here&apos;s a form to fill out
       </h2>
 
       <GenericForm />
-    </section>
+    </main>
   );
 };
 
