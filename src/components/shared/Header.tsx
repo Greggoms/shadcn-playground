@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-import Nav from "@/components/Nav";
-import ThemeToggle from "@/components/ThemeToggle";
-import UserButton from "@/components/UserButton";
+import Nav from "@/components/shared/Nav";
+import ThemeToggle from "@/components/shared/ThemeToggle";
+import UserButton from "@/components/shared/UserButton";
 
 const Header = () => {
   return (

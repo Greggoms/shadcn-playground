@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import { ThemeProvider } from "@/components/theme-provider";
+import Header from "@/components/shared/Header";
+import QueryProvider from "@/components/providers/QueryProvider";
+import ParticlesProvider from "@/components/providers/ParticlesProvider";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
-import QueryProvider from "@/components/query-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,9 +29,11 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Header />
-            <div id="root_body">{children}</div>
-            <Toaster richColors />
+            <ParticlesProvider>
+              <Header />
+              <div id="root_body">{children}</div>
+              <Toaster richColors />
+            </ParticlesProvider>
           </ThemeProvider>
         </QueryProvider>
       </body>
