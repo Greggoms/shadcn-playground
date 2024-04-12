@@ -1,6 +1,6 @@
 import { type ISourceOptions } from "@tsparticles/engine";
 
-export const carouselFireworksParticles: ISourceOptions = {
+export const fireworksParticles: ISourceOptions = {
   autoPlay: true,
   background: {
     color: {
@@ -246,10 +246,10 @@ export const carouselFireworksParticles: ISourceOptions = {
       drift: 0,
       enable: true,
       gravity: {
-        acceleration: 5,
+        acceleration: { min: 5, max: 15 },
         enable: true,
         inverse: true,
-        maxSpeed: 3,
+        maxSpeed: { min: 2, max: 8 },
       },
       path: {
         clamp: true,
@@ -635,7 +635,7 @@ export const carouselFireworksParticles: ISourceOptions = {
   },
 };
 
-export const carouselStarParticles: ISourceOptions = {
+export const starParticles: ISourceOptions = {
   autoPlay: true,
   background: {
     color: {

@@ -13,16 +13,23 @@ type ParticlesProviderProps = {
 export default function ParticlesProvider({
   children,
 }: ParticlesProviderProps) {
-  const setIsLoaded = useParticleStore((state) => state.setIsLoaded);
+  const isInitialized = useParticleStore((state) => state.isInitialized);
+  const setIsInitialized = useParticleStore((state) => state.setIsInitialized);
 
   // this should be run only once per application lifetime
   useEffect(() => {
+    if (isInitialized) {
+      return;
+    }
+
+    // console.log("Initializing Engine...");
     initParticlesEngine(async (engine) => {
       await loadFull(engine);
     }).then(() => {
-      setIsLoaded(true);
+      // console.log("Engine Initialized!");
+      setIsInitialized(true);
     });
-  }, [setIsLoaded]);
+  }, [isInitialized, setIsInitialized]);
 
   return children;
 }

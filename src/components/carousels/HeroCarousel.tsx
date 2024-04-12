@@ -3,8 +3,8 @@
 import Image from "next/image";
 import Particles from "@tsparticles/react";
 
-import FireworkParticles from "./FireworkParticles";
-import { carouselStarParticles } from "@/lib/configs/particles";
+import FireworkParticles from "./assets/FireworksParticles";
+import { starParticles } from "@/lib/configs/particles";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -19,9 +19,9 @@ import {
 export default function HeroCarousel() {
   return (
     <Carousel className="flex flex-col">
-      <CarouselContent>
+      <CarouselContent className="h-[50vh]">
         <CarouselItem className="relative grid">
-          <FireworkParticles />
+          <FireworkParticles className="absolute bottom-0 left-0 right-0 top-0 z-0 col-start-1 row-start-1" />
           <div className="z-10 col-start-1 row-start-1 flex flex-col items-center gap-4 text-center place-content-center h-full">
             <h2 className="text-2xl md:text-6xl">Celebrate Always</h2>
             <p className="max-w-md">
@@ -29,8 +29,28 @@ export default function HeroCarousel() {
             </p>
           </div>
         </CarouselItem>
+        <CarouselItem className="relative grid">
+          {/* Needed to do some custom stuff to make this canvas appear on the second slide.
+              The example code does not work inside the carousel by default.
+              https://github.com/tsparticles/react?tab=readme-ov-file#typescript-support---object
+          */}
+          <Particles
+            id="tsparticles-stars"
+            // particlesLoaded={particlesLoaded}
+            options={starParticles}
+            className="col-start-1 row-start-1 absolute top-0 right-0 bottom-0 left-0"
+          />
+          <div className="z-10 col-start-1 row-start-1 flex flex-col items-center gap-4 text-center place-content-center h-full">
+            <h2 className="text-2xl md:text-6xl">Shoot for the Stars</h2>
+            <p className="max-w-md">
+              Laudantium aliquam dolorem porro, incidunt magnam repudiandae
+              ullam modi nemo!
+            </p>
+            <Button className="whitespace-normal">Learn More</Button>
+          </div>
+        </CarouselItem>
         <CarouselItem>
-          <div className="p-5 md:p-10 flex flex-col-reverse md:flex-row items-center gap-5 justify-around place-content-center max-w-6xl mx-auto">
+          <div className="p-5 md:p-10 h-full flex flex-col-reverse md:flex-row items-center gap-5 justify-around place-content-center max-w-6xl mx-auto">
             <div className="space-y-5">
               <h2 className="text-2xl md:text-6xl">Enticing Title</h2>
               <p className="max-w-md">
@@ -49,26 +69,6 @@ export default function HeroCarousel() {
                 className="w-auto h-auto object-contain"
               />
             </div>
-          </div>
-        </CarouselItem>
-        <CarouselItem className="relative grid">
-          {/* Needed to do some custom stuff to make this canvas appear on the second slide.
-              The example code does not work inside the carousel by default.
-              https://github.com/tsparticles/react?tab=readme-ov-file#typescript-support---object
-          */}
-          <Particles
-            id="tsparticles-stars"
-            // particlesLoaded={particlesLoaded}
-            options={carouselStarParticles}
-            className="col-start-1 row-start-1 absolute top-0 right-0 bottom-0 left-0"
-          />
-          <div className="z-10 col-start-1 row-start-1 flex flex-col items-center gap-4 text-center place-content-center h-full">
-            <h2 className="text-2xl md:text-6xl">Shoot for the Stars</h2>
-            <p className="max-w-md">
-              Laudantium aliquam dolorem porro, incidunt magnam repudiandae
-              ullam modi nemo!
-            </p>
-            <Button className="whitespace-normal">Learn More</Button>
           </div>
         </CarouselItem>
       </CarouselContent>

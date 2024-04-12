@@ -1,11 +1,11 @@
 import { create } from "zustand";
 
 interface ParticleState {
-  isLoaded: boolean;
-  setIsLoaded: (value: boolean) => void;
+  isInitialized: boolean;
+  setIsInitialized: (value: boolean) => void;
 }
 
 export const useParticleStore = create<ParticleState>()((set) => ({
-  isLoaded: false,
-  setIsLoaded: (value) => set((state) => ({ isLoaded: value })),
+  isInitialized: false,
+  setIsInitialized: (value) => set((state) => ({ isInitialized: value })),
 }));

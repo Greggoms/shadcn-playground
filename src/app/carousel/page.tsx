@@ -1,9 +1,9 @@
-import AutoScrollCarousel from "@/components/carousels/AutoScrollCarousel";
 import HeroCarousel from "@/components/carousels/HeroCarousel";
+import AutoScrollCarousel from "@/components/carousels/AutoScrollCarousel";
 
 export default function CarouselPage() {
   return (
-    <main>
+    <main className="flex flex-col gap-y-20">
       <HeroCarousel />
       <AutoScrollCarousel />
     </main>
